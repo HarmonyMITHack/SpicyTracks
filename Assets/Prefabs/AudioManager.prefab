@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixerGroup: {fileID: 24300002, guid: 888ce593232ac854b9accd829727f8c3, type: 2}
+  audioMixer: {fileID: 24100000, guid: 888ce593232ac854b9accd829727f8c3, type: 2}
   audioSource: {fileID: 384680699122250187}
 --- !u!82 &384680699122250187
 AudioSource:

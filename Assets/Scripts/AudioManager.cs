@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using DG.Tweening;
 
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioMixerGroup mixerGroup;
+    [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private AudioSource audioSource;
+
+    private const string VOLUME_PARAM = "Volume";
 
     private List<AudioSource> audioSourcePool;
     private readonly int initialPoolSize = 10;
@@ -62,6 +66,33 @@ public class AudioManager : MonoBehaviour
         tempAudioSource.outputAudioMixerGroup = mixerGroup;
         tempGO.SetActive(false);
         return tempAudioSource;
+    }
+
+    private void CrossfadeMixer(float to, float duration)
+    {
+        audioMixer.DOSetFloat(VOLUME_PARAM, to, duration);
+    }
+
+    private void Crossfade(float toVolume, float duration)
+    {
+        DOTween.To(() => audioSource.volume, x => audioSource.volume = x, toVolume, duration);
+    }
+
+    public static void Crossfade(AudioSource source, float toVolume, float duration)
+    {
+        DOTween.To(() => source.volume, x => source.volume = x, toVolume, duration);
+    }
+
+    [ContextMenu("Crossfade Out")]
+    private void CrossfadeOut()
+    {
+        Crossfade(0f, 2f);
+    }
+
+    [ContextMenu("Crossfade In")]
+    private void CrossfadeIn()
+    {
+        Crossfade(1f, 2f);
     }
 
     public void PlaySoundAtPosition(AudioClip soundClip, Transform transform, float volume = 1f, float pitch = 1f)
