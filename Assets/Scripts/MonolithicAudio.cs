@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class MonolithicAudio : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class MonolithicAudio : MonoBehaviour
         {
             StartLoop();
         }
+    }
+
+    public void PlayAudioClip(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 
     public void PlayAudioClip(AudioClip clip, float volume = 1f)
