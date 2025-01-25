@@ -12293,6 +12293,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8101862309025370109, guid: c773758b5daca6f41932ddeabd5be3ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c773758b5daca6f41932ddeabd5be3ed,
         type: 3}
       propertyPath: m_Name
@@ -12305,9 +12310,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -7604752157977312543, guid: c773758b5daca6f41932ddeabd5be3ed,
+        type: 3}
+      insertIndex: 15
+      addedObject: {fileID: 1904465494}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c773758b5daca6f41932ddeabd5be3ed, type: 3}
+--- !u!4 &564122428 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7604752157977312543, guid: c773758b5daca6f41932ddeabd5be3ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 564122427}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &567433108
 GameObject:
   m_ObjectHideFlags: 0
@@ -17178,7 +17193,7 @@ Transform:
   m_GameObject: {fileID: 783594862}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.224, y: -0.291, z: 1.73}
+  m_LocalPosition: {x: 0.224, y: -0.291, z: 1.677}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25986,7 +26001,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1206503495}
-  - component: {fileID: 1206503494}
   - component: {fileID: 1206503493}
   m_Layer: 0
   m_Name: Collider
@@ -26007,28 +26021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2140d2b457bea84881488302059889b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 1206503494}
---- !u!65 &1206503494
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1206503492}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  _collider: {fileID: 1904465490}
 --- !u!4 &1206503495
 Transform:
   m_ObjectHideFlags: 0
@@ -35831,12 +35824,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.002235584, y: 0.0014731443, z: 0.00023926227}
+  m_Center: {x: -0.00038121943, y: 4.6504192e-10, z: 0.00012466834}
 --- !u!23 &1730457907
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39161,7 +39154,19 @@ MonoBehaviour:
         m_CallState: 2
   onRelease:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 895363869}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1850225128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40018,12 +40023,12 @@ GameObject:
   - component: {fileID: 1904465490}
   - component: {fileID: 1904465489}
   m_Layer: 0
-  m_Name: '[BuildingBlock] Ray Interaction'
+  m_Name: Cylinder.006 BuildingBlock] Ray Interaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1904465489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40062,10 +40067,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.0050000045, y: 0.009999998, z: 0.004999999}
+  m_Center: {x: -0.037915267, y: 0.1057193, z: -0.048394017}
 --- !u!23 &1904465491
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40086,7 +40091,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4a6aafff66a85e8489b74102d92fef61, type: 2}
+  - {fileID: -3768627450112457282, guid: c773758b5daca6f41932ddeabd5be3ed, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -40115,7 +40120,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904465488}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -125435165217083709, guid: c773758b5daca6f41932ddeabd5be3ed, type: 3}
 --- !u!114 &1904465493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40142,13 +40147,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904465488}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: -0.15, z: 0.52}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: 0.4884368, y: -0.48154283, z: -0.5139119, w: 0.51520926}
+  m_LocalPosition: {x: -0.006966876, y: -0.013796059, z: 0.0020934034}
+  m_LocalScale: {x: 0.1273185, y: 0.12570305, z: 0.14213529}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1206503495}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 564122428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1905976464
 GameObject:
@@ -46207,7 +46212,6 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 671054884}
   - {fileID: 94652927}
-  - {fileID: 1904465494}
   - {fileID: 895363868}
   - {fileID: 783594863}
   - {fileID: 469207076}
