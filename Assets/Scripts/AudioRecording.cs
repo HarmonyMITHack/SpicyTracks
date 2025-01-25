@@ -6,6 +6,8 @@ using UnityEngine.Audio;
 
 public class AudioRecording : MonoBehaviour
 {
+    public float recordingLength = 10f;
+
     private string savePath;
     private int sampleRate = 48000;
     private int channels = 2;
@@ -39,7 +41,7 @@ public class AudioRecording : MonoBehaviour
 
     private IEnumerator TrackLength()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(recordingLength);
         StopRecording();
     }
 
