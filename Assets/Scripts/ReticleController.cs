@@ -1,5 +1,6 @@
 using Oculus.Interaction;
 using UnityEngine;
+using UnityEngine.UI;
 
 public interface IRayInteractable
 {
@@ -59,19 +60,22 @@ public class ReticleController : MonoBehaviour
                         StartAction lastStartAction = lastHitInteractable.GetComponent<StartAction>();
                         if (lastStartAction != null)
                         {
+                            crosshair.GetComponent<Image>().enabled = false;
                             lastStartAction.CallExit(); // Stop the previous interaction
                         }
                     }
 
                     // Call CallStart on the new interactable
-                    Debug.Log("Hit interactable: " + hitInfo.collider.name);
+                    //Debug.Log("Hit interactable: " + hitInfo.collider.name);
                     StartAction startAction = hitInfo.collider.gameObject.GetComponent<StartAction>();
                     if (startAction != null)
                     {
+                        crosshair.GetComponent<Image>().enabled = true;
                         startAction.CallStart();
                     }
 
                     // Update the last hit interactable
+
                     lastHitInteractable = interactable;
                 }
             }
@@ -88,6 +92,7 @@ public class ReticleController : MonoBehaviour
                 StartAction stopAction = lastHitInteractable.GetComponent<StartAction>();
                 if (stopAction != null)
                 {
+                    crosshair.GetComponent<Image>().enabled = false;
                     stopAction.CallExit(); // Stop interaction if raycast moves away from the object
                 }
 
