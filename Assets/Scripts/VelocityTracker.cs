@@ -8,7 +8,7 @@ public class VelocityTracker : MonoBehaviour
     public float Magnitude { get; private set; }
     public float magnitudeThreshold = 1f;
     private Vector3 lastPosition;
-    private float timeAtThreshold = 0f;
+    //private float timeAtThreshold = 0f;
     private Rigidbody rb;
 
     public UnityEvent onThresholdReached, onThresholdEnded;
