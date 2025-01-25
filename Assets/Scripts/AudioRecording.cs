@@ -6,6 +6,8 @@ using UnityEngine.Audio;
 
 public class AudioRecording : MonoBehaviour
 {
+    public float recordingLength = 10f;
+
     private string savePath;
     private int sampleRate = 48000;
     private int channels = 2;
@@ -34,11 +36,19 @@ public class AudioRecording : MonoBehaviour
         audioDataList.Clear();
         isRecording = true;
         Debug.Log("Recording started");
+        StartCoroutine(TrackLength());
+    }
+
+    private IEnumerator TrackLength()
+    {
+        yield return new WaitForSeconds(recordingLength);
+        StopRecording();
     }
 
     [ContextMenu("Stop Recording")]
     public void StopRecording()
     {
+        if (!isRecording) return;
         isRecording = false;
         Debug.Log("Recording stopped");
         SaveAudioToWAV();
@@ -106,5 +116,20 @@ public class AudioRecording : MonoBehaviour
     {
         stream.WriteByte((byte)(value & 0xFF));
         stream.WriteByte((byte)((value >> 8) & 0xFF));
+    }
+
+    public void DeleteFile()
+    {
+        string filePath = System.IO.Path.Combine(Application.persistentDataPath, AUDIO_FILE_NAME);
+
+        if (System.IO.File.Exists(filePath))
+        {
+            Debug.Log("Deleted audio file");
+            System.IO.File.Delete(filePath);
+        }
+        else
+        {
+            Debug.Log("Audio file does not exist");
+        }
     }
 }

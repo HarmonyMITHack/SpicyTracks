@@ -10,21 +10,12 @@ public class AudioTester : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.One))
         {
             if (audioClip != null)
             {
-                //audioSource.PlayOneShot(audioClip);
-                //AudioManager.Instance.PlaySoundAtPosition(audioClip, transform);
                 MonolithicAudio.Instance.PlayAudioClip(audioClip);
             }
         }
-        /*else if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            if (audioClip2 != null)
-            {
-                MonolithicAudio.Instance.PlayAudioClip(null, 1f, 1.5f);
-            }
-        }*/
     }
 }
