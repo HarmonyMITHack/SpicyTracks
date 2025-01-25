@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 public class MonolithicAudio : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource nonRecordingAudioSource;
     [SerializeField] private AudioFilePlayer audioFilePlayer;
     [SerializeField] private AudioRecording audioRecording;
 
@@ -16,11 +17,7 @@ public class MonolithicAudio : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
-    {
-        //StartLoop();
-    }
-
+#if UNITY_EDITOR
     private void Update()
     {
         if (OVRInput.GetDown(OVRInput.Button.Two))
@@ -28,6 +25,7 @@ public class MonolithicAudio : MonoBehaviour
             StartLoop();
         }
     }
+#endif
 
     public void PlayAudioClip(AudioClip clip)
     {
@@ -39,6 +37,11 @@ public class MonolithicAudio : MonoBehaviour
         audioSource.PlayOneShot(clip, volume);
     }
 
+    public void PlayUnrecordedAudioClip(AudioClip clip)
+    {
+        nonRecordingAudioSource.PlayOneShot(clip);
+    }
+    
     [ContextMenu("Start Loop")]
     public void StartLoop()
     {
