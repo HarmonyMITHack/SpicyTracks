@@ -6,12 +6,12 @@ public class StartAction : MonoBehaviour
     public UnityEvent onEnter;  // Event to trigger on Enter
     public UnityEvent onExit;   // Event to trigger on Exit
 
-    public void Start()
+    public void CallStart()
     {
         onEnter.Invoke();
     }
 
-    public void Exit()
+    public void CallExit()
     {
         onExit.Invoke();
     }

@@ -20,6 +20,7 @@ public class ReticleController : MonoBehaviour
     private float lastKnownDistance;
 
     private RaycastHit hitInfo;
+    private RayInteractable lastHitInteractable = null; // Track the last hit interactable object
 
     void Start()
     {
@@ -49,11 +50,29 @@ public class ReticleController : MonoBehaviour
             RayInteractable interactable = hitInfo.collider.gameObject.GetComponent<RayInteractable>();
             if (interactable != null)
             {
-                Debug.Log("Hit interactable: " + hitInfo.collider.name);
-                StartAction startAction = hitInfo.collider.gameObject.GetComponent<StartAction>();
-                if (startAction != null)
+                // If we hit a new interactable object, handle the CallStart
+                if (lastHitInteractable != interactable)
                 {
-                    startAction.Start();
+                    // Call CallStop on the last interactable (if any)
+                    if (lastHitInteractable != null)
+                    {
+                        StartAction lastStartAction = lastHitInteractable.GetComponent<StartAction>();
+                        if (lastStartAction != null)
+                        {
+                            lastStartAction.CallExit(); // Stop the previous interaction
+                        }
+                    }
+
+                    // Call CallStart on the new interactable
+                    Debug.Log("Hit interactable: " + hitInfo.collider.name);
+                    StartAction startAction = hitInfo.collider.gameObject.GetComponent<StartAction>();
+                    if (startAction != null)
+                    {
+                        startAction.CallStart();
+                    }
+
+                    // Update the last hit interactable
+                    lastHitInteractable = interactable;
                 }
             }
         }
@@ -62,6 +81,18 @@ public class ReticleController : MonoBehaviour
             // No hit, so extend the ray to the far clip plane
             lastKnownPosition = ray.origin + ray.direction * CameraFacing.farClipPlane * 0.95f;
             lastKnownDistance = CameraFacing.farClipPlane * 0.95f;
+
+            // If we were previously hitting an interactable, call CallStop
+            if (lastHitInteractable != null)
+            {
+                StartAction stopAction = lastHitInteractable.GetComponent<StartAction>();
+                if (stopAction != null)
+                {
+                    stopAction.CallExit(); // Stop interaction if raycast moves away from the object
+                }
+
+                lastHitInteractable = null; // Reset the interactable tracker
+            }
         }
 
         // Non-linear scaling factor to reduce "slipping" effect
