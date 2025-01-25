@@ -17,7 +17,15 @@ public class MonolithicAudio : MonoBehaviour
 
     private void Start()
     {
-        StartLoop();
+        //StartLoop();
+    }
+
+    private void Update()
+    {
+        if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            StartLoop();
+        }
     }
 
     public void PlayAudioClip(AudioClip clip, float volume = 1f)
@@ -38,5 +46,11 @@ public class MonolithicAudio : MonoBehaviour
     {
         Debug.Log("Stopping loop");
         audioRecording.StopRecording();
+    }
+
+    [ContextMenu("Delete Loop")]
+    public void DeleteLoop()
+    {
+        audioRecording.DeleteFile();
     }
 }
