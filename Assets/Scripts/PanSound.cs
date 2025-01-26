@@ -4,23 +4,11 @@ using UnityEngine;
 
 public class PanSound : MonoBehaviour
 {
-    /*public AudioSource audioSource;
-    public AudioClip originalClip;
-    public AudioClip movementClip;
-    public float movementThreshold = 0.1f;
+    //public AudioSource audioSource;
+    public AudioClip[] clips;
 
-    private Vector3 lastPosition;
-    private bool isMoving = false;
-
-    private void Start()
+    public void PlayRandomSound()
     {
-        lastPosition = transform.position;
+        MonolithicAudio.Instance.PlayUnrecordedAudioClip(clips[Random.Range(0, clips.Length)], 0.7f, Random.Range(0.95f, 1.05f));
     }
-
-    private void Update()
-    {
-        float movement = (transform.position - lastPosition).magnitude;
-
-        if (movement > movementThreshold)
-    }*/
 }

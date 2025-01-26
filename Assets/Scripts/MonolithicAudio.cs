@@ -41,7 +41,12 @@ public class MonolithicAudio : MonoBehaviour
     {
         nonRecordingAudioSource.PlayOneShot(clip);
     }
-    
+
+    public void PlayUnrecordedAudioClip(AudioClip clip, float volume = 1f, float pitch = 1f)
+    {
+        nonRecordingAudioSource.PlayOneShot(clip);
+    }
+
     [ContextMenu("Start Loop")]
     public void StartLoop()
     {

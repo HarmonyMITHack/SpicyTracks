@@ -6,6 +6,7 @@ using UnityEngine;
 public class Billboard : MonoBehaviour
 {
     public Renderer m_Renderer;
+    public float timeUntilReturn = 5f;
     private Camera targetCamera;
     private float lastInteracted = 0f;
     private bool interacting = false;
@@ -14,7 +15,7 @@ public class Billboard : MonoBehaviour
     {
         lastInteracted += Time.deltaTime;
 
-        if (lastInteracted > 5f)
+        if (lastInteracted > timeUntilReturn)
         {
             if (interacting)
             {
