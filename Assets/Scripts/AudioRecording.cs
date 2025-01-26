@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Audio;
 
 public class AudioRecording : MonoBehaviour
@@ -14,6 +15,8 @@ public class AudioRecording : MonoBehaviour
     private int channels = 2;
     private List<float> audioDataList = new();
     private bool isRecording = false;
+
+    public UnityEvent onRecordingFinished;
 
     public const string AUDIO_FILE_NAME = "audio_recording.wav";
 
@@ -34,6 +37,7 @@ public class AudioRecording : MonoBehaviour
     [ContextMenu("Start Recording")]
     public void StartRecording()
     {
+        Debug.Log("Start recording activated");
         audioDataList.Clear();
         StartCoroutine(RecordingCoroutine());
     }
@@ -59,6 +63,7 @@ public class AudioRecording : MonoBehaviour
         isRecording = false;
         Debug.Log("Recording stopped");
         SaveAudioToWAV();
+        onRecordingFinished.Invoke();
     }
 
     private void SaveAudioToWAV()
