@@ -17,6 +17,7 @@ public class InterruptAudioMovement : MonoBehaviour
     private void Start()
     {
         lastPosition = transform.position;
+
     }
 
     private void Update()
@@ -25,35 +26,23 @@ public class InterruptAudioMovement : MonoBehaviour
 
         if (letGo)
         {
-            if (currentFade != null)
-            {
-                currentFade = StartCoroutine(FadeOutAndSwitchClip(originalClip));
-                lastPosition = transform.position;
-                letGo = false;
-                return;
-            }
+            StopCurrentFade();
+            PlayClip(originalClip);
+            letGo = false;
+            lastPosition = transform.position;
+            return;
         }
 
         if (movement > movementThreshold && !isMoving)
         {
             isMoving = true;
-
-            if (currentFade != null)
-            {
-                StopCoroutine(currentFade);
-            }
-
+            StopCurrentFade();
             currentFade = StartCoroutine(FadeOutAndSwitchClip(movementClip));
         }
         else if (movement <= movementThreshold && isMoving)
         {
             isMoving = false;
-
-            if (currentFade != null)
-            {
-                StopCoroutine(currentFade);
-            }
-
+            StopCurrentFade();
             currentFade = StartCoroutine(FadeOutAndSwitchClip(originalClip));
         }
 
@@ -64,40 +53,47 @@ public class InterruptAudioMovement : MonoBehaviour
     {
         float startVolume = audioSource.volume;
 
-        float timeElapsed = 0f;
-        while (timeElapsed < fadeDuration)
+        // Fade out current audio
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
-            audioSource.volume = Mathf.Lerp(startVolume, 0f, timeElapsed / fadeDuration);
-            timeElapsed += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(startVolume, 0f, t / fadeDuration);
             yield return null;
         }
-
         audioSource.volume = 0f;
-        audioSource.Stop();
 
         audioSource.clip = newClip;
         audioSource.Play();
 
-        timeElapsed = 0f;
-        while (timeElapsed < fadeDuration)
+        // Fade in new audio
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
-            audioSource.volume = Mathf.Lerp(0f, 1f, timeElapsed / fadeDuration);
-            timeElapsed += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(0f, 1f, t / fadeDuration);
             yield return null;
         }
-
         audioSource.volume = 1f;
     }
 
     public void Released()
     {
         letGo = true;
+    }
 
-        /*if (currentFade != null)
+    private void StopCurrentFade()
+    {
+        if (currentFade != null)
         {
             StopCoroutine(currentFade);
+            currentFade = null;
         }
+    }
 
-        currentFade = StartCoroutine(FadeOutAndSwitchClip(originalClip));*/
+    private void PlayClip(AudioClip clip)
+    {
+        if (audioSource.clip != clip)
+        {
+            audioSource.volume = 0f;
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
     }
 }
