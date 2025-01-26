@@ -606,9 +606,22 @@ MonoBehaviour:
   onPokeStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2126522177}
-        m_TargetAssemblyTypeName: MonolithicAudio, Assembly-CSharp
-        m_MethodName: PlayAudioClip
+      - m_Target: {fileID: 895363869}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 0de5b031ecba8d5429613de8fc0cd6a0,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: idle
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 895363869}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: 3230a20f58f99d641b49f28d60d07826,
@@ -624,7 +637,8 @@ MonoBehaviour:
         m_MethodName: Play
         m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 8300000, guid: 0de5b031ecba8d5429613de8fc0cd6a0,
+            type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -28607,9 +28621,22 @@ MonoBehaviour:
   onPokeStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2126522177}
-        m_TargetAssemblyTypeName: MonolithicAudio, Assembly-CSharp
-        m_MethodName: PlayAudioClip
+      - m_Target: {fileID: 895363869}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 0de5b031ecba8d5429613de8fc0cd6a0,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: idle
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 895363869}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: 0de5b031ecba8d5429613de8fc0cd6a0,
@@ -28625,7 +28652,8 @@ MonoBehaviour:
         m_MethodName: Play
         m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 8300000, guid: 0de5b031ecba8d5429613de8fc0cd6a0,
+            type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -40115,9 +40143,22 @@ MonoBehaviour:
   onPokeStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2126522177}
-        m_TargetAssemblyTypeName: MonolithicAudio, Assembly-CSharp
-        m_MethodName: PlayAudioClip
+      - m_Target: {fileID: 895363869}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 0de5b031ecba8d5429613de8fc0cd6a0,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: idle
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 895363869}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: 04865f0122652fe41b063e388f134ad8,
@@ -40133,7 +40174,8 @@ MonoBehaviour:
         m_MethodName: Play
         m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 8300000, guid: 0de5b031ecba8d5429613de8fc0cd6a0,
+            type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
