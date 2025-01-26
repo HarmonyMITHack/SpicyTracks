@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class PanSound : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    /*public AudioSource audioSource;
+    public AudioClip originalClip;
+    public AudioClip movementClip;
+    public float movementThreshold = 0.1f;
+
+    private Vector3 lastPosition;
+    private bool isMoving = false;
+
+    private void Start()
     {
-        
+        lastPosition = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
-    }
+        float movement = (transform.position - lastPosition).magnitude;
+
+        if (movement > movementThreshold)
+    }*/
 }
