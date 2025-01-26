@@ -32,11 +32,12 @@ public class OnHandGrabUnityEvents : MonoBehaviour
         if (evt.Type == PointerEventType.Select)
         {
             onGrab?.Invoke();
-            Debug.Log("Grabbed");
+            Debug.Log("Grabbed " + gameObject.name);
         }
         else if (evt.Type == PointerEventType.Unselect)
         {
             onRelease?.Invoke();
+            Debug.Log("Released " + gameObject.name);
         }
     }
 }
