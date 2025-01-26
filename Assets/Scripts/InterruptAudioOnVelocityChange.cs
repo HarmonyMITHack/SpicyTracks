@@ -3,49 +3,67 @@ using System.Collections;
 
 public class InterruptAudioMovement : MonoBehaviour
 {
-    public AudioSource audioSource;           // The AudioSource to play the music
-    public AudioClip originalClip;           // The original music clip
-    public AudioClip movementClip;           // The music to play during sudden movement
-    public float movementThreshold = 1.0f;   // Threshold for detecting sudden movement
-    public float fadeDuration = 0.1f;        // Duration for the fade effect
+    public AudioSource audioSource;
+    public AudioClip originalClip;
+    public AudioClip movementClip;
+    public float movementThreshold = 1.0f;
+    public float fadeDuration = 0.1f;
 
+    private Coroutine currentFade;
     private Vector3 lastPosition;
     private bool isMoving = false;
+    private bool letGo = false;
 
     private void Start()
     {
-        // Initialize the last position
         lastPosition = transform.position;
     }
 
     private void Update()
     {
-        // Detect the movement by comparing the current position with the last position
         float movement = (transform.position - lastPosition).magnitude;
+
+        if (letGo)
+        {
+            if (currentFade != null)
+            {
+                currentFade = StartCoroutine(FadeOutAndSwitchClip(originalClip));
+                lastPosition = transform.position;
+                letGo = false;
+                return;
+            }
+        }
 
         if (movement > movementThreshold && !isMoving)
         {
-            // If sudden movement is detected, stop the current audio and play the movement clip
             isMoving = true;
-            StartCoroutine(FadeOutAndSwitchClip(movementClip)); // Fade out and switch to movement clip
+
+            if (currentFade != null)
+            {
+                StopCoroutine(currentFade);
+            }
+
+            currentFade = StartCoroutine(FadeOutAndSwitchClip(movementClip));
         }
         else if (movement <= movementThreshold && isMoving)
         {
-            // If movement stops, stop the current audio and play the original clip
             isMoving = false;
-            StartCoroutine(FadeOutAndSwitchClip(originalClip)); // Fade out and switch to original clip
+
+            if (currentFade != null)
+            {
+                StopCoroutine(currentFade);
+            }
+
+            currentFade = StartCoroutine(FadeOutAndSwitchClip(originalClip));
         }
 
-        // Update the last position
         lastPosition = transform.position;
     }
 
     private IEnumerator FadeOutAndSwitchClip(AudioClip newClip)
     {
-        // Fade out the current audio over the specified duration
         float startVolume = audioSource.volume;
 
-        // Fade out
         float timeElapsed = 0f;
         while (timeElapsed < fadeDuration)
         {
@@ -54,24 +72,32 @@ public class InterruptAudioMovement : MonoBehaviour
             yield return null;
         }
 
-        // Ensure the volume is fully zero and stop the audio
         audioSource.volume = 0f;
         audioSource.Stop();
 
-        // Change the clip and play it
         audioSource.clip = newClip;
         audioSource.Play();
 
-        // Fade in the new clip
         timeElapsed = 0f;
         while (timeElapsed < fadeDuration)
         {
-            audioSource.volume = Mathf.Lerp(0f, 1f, timeElapsed / fadeDuration); // Fade to full volume
+            audioSource.volume = Mathf.Lerp(0f, 1f, timeElapsed / fadeDuration);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
 
-        // Ensure the volume is fully restored to 1
         audioSource.volume = 1f;
+    }
+
+    public void Released()
+    {
+        letGo = true;
+
+        /*if (currentFade != null)
+        {
+            StopCoroutine(currentFade);
+        }
+
+        currentFade = StartCoroutine(FadeOutAndSwitchClip(originalClip));*/
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 public class AudioRecording : MonoBehaviour
 {
     public float recordingLength = 10f;
+    public AudioClip[] countdownSounds;
 
     private string savePath;
     private int sampleRate = 48000;
@@ -34,13 +35,19 @@ public class AudioRecording : MonoBehaviour
     public void StartRecording()
     {
         audioDataList.Clear();
-        isRecording = true;
-        Debug.Log("Recording started");
-        StartCoroutine(TrackLength());
+        StartCoroutine(RecordingCoroutine());
     }
 
-    private IEnumerator TrackLength()
+    private IEnumerator RecordingCoroutine()
     {
+        MonolithicAudio.Instance.PlayUnrecordedAudioClip(countdownSounds[0]);
+        yield return new WaitForSeconds(1f);
+        MonolithicAudio.Instance.PlayUnrecordedAudioClip(countdownSounds[1]);
+        yield return new WaitForSeconds(1f);
+        MonolithicAudio.Instance.PlayUnrecordedAudioClip(countdownSounds[2]);
+        yield return new WaitForSeconds(1f);
+        isRecording = true;
+        Debug.Log("Recording started");
         yield return new WaitForSeconds(recordingLength);
         StopRecording();
     }
