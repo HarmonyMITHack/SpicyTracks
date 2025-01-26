@@ -50,8 +50,8 @@ public class MonolithicAudio : MonoBehaviour
     [ContextMenu("Start Loop")]
     public void StartLoop()
     {
+        audioRecording.StopRecording();
         Debug.Log("Starting loop");
-        audioFilePlayer.PlayRecordedAudio();
         audioRecording.StartRecording();
     }
 

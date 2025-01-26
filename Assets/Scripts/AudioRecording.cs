@@ -15,8 +15,9 @@ public class AudioRecording : MonoBehaviour
     private int channels = 2;
     private List<float> audioDataList = new();
     private bool isRecording = false;
+    private Coroutine coroutine;
 
-    public UnityEvent onRecordingFinished;
+    public UnityEvent onRecordingStarted, onRecordingFinished;
 
     public const string AUDIO_FILE_NAME = "audio_recording.wav";
 
@@ -39,7 +40,12 @@ public class AudioRecording : MonoBehaviour
     {
         Debug.Log("Start recording activated");
         audioDataList.Clear();
-        StartCoroutine(RecordingCoroutine());
+
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(RecordingCoroutine());
     }
 
     private IEnumerator RecordingCoroutine()
@@ -50,6 +56,7 @@ public class AudioRecording : MonoBehaviour
         yield return new WaitForSeconds(1f);
         MonolithicAudio.Instance.PlayUnrecordedAudioClip(countdownSounds[2]);
         yield return new WaitForSeconds(1f);
+        onRecordingStarted.Invoke();
         isRecording = true;
         Debug.Log("Recording started");
         yield return new WaitForSeconds(recordingLength);

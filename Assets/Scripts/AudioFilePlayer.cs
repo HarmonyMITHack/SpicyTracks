@@ -23,7 +23,11 @@ public class AudioFilePlayer : MonoBehaviour
 
     private IEnumerator LoadAndPlayAudio()
     {
+#if UNITY_ANDROID && !UNITY_EDITOR
         string filePath = "file://" + System.IO.Path.Combine(Application.persistentDataPath, audioFileName);
+#else
+        string filePath = System.IO.Path.Combine(Application.persistentDataPath, audioFileName);
+#endif
 
         Debug.Log("FilePath: " + filePath);
 
