@@ -1,7 +1,8 @@
 # **SpicyTracks**
 <p align="center">
-  <img src="https://github.com/HarmonyMITHack/Harmony/blob/main/Assets/Image/kitchen.png" alt="Logo" width="150"/>
+  <img src="https://github.com/HarmonyMITHack/Harmony/blob/main/Assets/Image/kitchen.png" alt="Logo" width="300"/>
 </p>
+
 ![Trailer Video](https://www.youtube.com/watch?v=AdFYhaTOTH0) | ![Devpost](https://devpost.com/software/spicytracks)
 
 ## Project Description
