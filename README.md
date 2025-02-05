@@ -16,8 +16,8 @@ SpicyTracks has 3 interaction methods for diverse mobility needs:
 2. Poking with Hands 
 3. Gaze with Head (activates sounds by simply looking)
 
-Gaze-Controlled Instruments: Boxes, Spice Rack, Glasses
-Hand-Controlled Instruments: Frying Pans & Toaster
+Gaze-Controlled Instruments: Boxes, Spice Rack, Glasses<br>
+Hand-Controlled Instruments: Frying Pans & Toaster<br>
 Microwave:
 - Start/Stop Recording:  Begin or end your musical session.
 - Trash & Restart: Don’t like your current track? Use the microwave to discard and start fresh.
